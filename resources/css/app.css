@@ -1,91 +1,156 @@
-@import 'tailwindcss';
-@import '../../vendor/livewire/flux/dist/flux.css';
-/* @import './theme.css'; */
-
-
-@source '../views/welcome.blade.php';
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
-@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
-
-@custom-variant dark (&:where(.dark, .dark *));
 /*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+ * =================================================================
+ * FILE "OTAK" TAILWIND V4
+ * =================================================================
+ * Ini adalah satu-satunya file yang mengimpor Tailwind.
+ * Ini mendefinisikan semua konfigurasi tema (dari .js lama)
+ * dan semua gaya dasar global.
+ */
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
-}
+/* 1. IMPOR UTAMA */
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
+@import "./theme.css"; /* Impor utility kustom (HARUS setelah tailwindcss) */
 
-body {
-  @apply font-poppins bg-white text-accent antialiased;
-}
+/* 2. SUMBER KONTEN (CONTENT SOURCES) */
+@source "../views/**/*.blade.php";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../vendor/livewire/flux-pro/stubs/**/*.blade.php";
+@source "../../vendor/livewire/flux/stubs/**/*.blade.php";
+
+/* 3. VARIAN KUSTOM */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * 4. DEFINISI @theme (SUMBER KEBENARAN TUNGGAL)
+ * -----------------------------------------------------------------
+ * Semua konfigurasi dari tailwind.config.js diterjemahkan
+ * ke sintaks Variabel CSS yang valid di sini.
+ */
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --color-primary: #ff2b2b;
-  --color-accent: #000000;
+    /* Palet warna utama (Light Mode) - Diterjemahkan dari .js */
+    --color-primary: #ea580c; /* Orange-600 */
+    --color-primary-hover: #c2410c; /* Orange-700 */
+    --color-secondary: #1e293b; /* Slate-800 */
+    --color-secondary-hover: #0f172a; /* Slate-900 */
+    --color-accent: #0ea5e9; /* Sky-500 */
+    --color-accent-hover: #0284c7; /* Sky-600 */
+    --color-neutral: #64748b; /* Slate-500 */
+    --color-base-100: #ffffff; /* White */
+    --color-base-200: #f8fafc; /* Slate-50 */
+    --color-base-300: #f1f5f9; /* Slate-100 */
+    --color-base-content: #334155; /* Slate-700 */
+    --color-base-section: #fff7ed; /* Orange-50 */
 
-  --font-poppins: Poppins, sans-serif;
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
+    /* Varian Dark Mode - Diterjemahkan dari .js */
+    --color-dark-primary: #f97316; /* Orange-500 */
+    --color-dark-primary-hover: #fb923c; /* Orange-400 */
+    --color-dark-secondary: #e2e8f0; /* Slate-200 */
+    --color-dark-secondary-hover: #f1f5f9; /* Slate-100 */
+    --color-dark-accent: #38bdf8; /* Sky-400 */
+    --color-dark-accent-hover: #7dd3fc; /* Sky-300 */
+    --color-dark-neutral: #94a3b8; /* Slate-400 */
+    --color-dark-base-100: #0f172a; /* Slate-900 */
+    --color-dark-base-200: #1e293b; /* Slate-800 */
+    --color-dark-base-300: #334155; /* Slate-700 */
+    --color-dark-base-content: #cbd5e1; /* Slate-300 */
+    --color-dark-base-section: #1e293b; /* Slate-800 */
 
-    --color-accent: var(--color-neutral-800);
-    --color-accent-content: var(--color-neutral-800);
-    --color-accent-foreground: var(--color-white);
+    /* Warna semantik - Diterjemahkan dari .js */
+    --color-info: #0ea5e9;
+    --color-info-dark: #38bdf8;
+    --color-success: #16a34a;
+    --color-success-dark: #22c55e;
+    --color-warning: #f59e0b;
+    --color-warning-dark: #fbbf24;
+    --color-danger: #dc2626;
+    --color-danger-dark: #ef4444;
+
+    /* Alias untuk memenuhi instruksi ring-primary-500 */
+    /* Kita petakan Orange-500 (dari dark-primary) ke primary-500 */
+    --color-primary-500: #f97316;
+
+    /* Font Family - Diterjemahkan dari .js */
+    --font-sans: "Inter", "ui-sans-serif", "system-ui", -apple-system,
+        "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial",
+        "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol", "Noto Color Emoji";
+    --font-serif: "Playfair Display", "ui-serif", "Georgia", "Cambria",
+        "Times New Roman", "Times", "serif";
+
+    /* Transisi - Diterjemahkan dari .js */
+    --transition-height: height;
+    --transition-spacing: margin, padding;
 }
 
-@layer theme {
-    .dark {
-        --color-accent: var(--color-white);
-        --color-accent-content: var(--color-white);
-        --color-accent-foreground: var(--color-neutral-800);
-    }
-}
-
+/*
+ * 5. LAYER DASAR GLOBAL (TERKONSOLIDASI)
+ * -----------------------------------------------------------------
+ * Semua gaya @layer base digabungkan di sini.
+ */
 @layer base {
-
+    /* Kompatibilitas border v3 -> v4 */
     *,
     ::after,
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
+        border-color: var(--color-gray-200, currentcolor);
+    }
+
+    /* Gaya dasar HTML & Body (dari theme.css lama) */
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply font-sans bg-base-100 text-base-content tracking-tight;
+        @apply dark:bg-dark-base-100 dark:text-dark-base-content;
+    }
+
+    /* Tipografi Default (dari theme.css lama) */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-serif font-bold text-secondary dark:text-dark-secondary;
+    }
+
+    h1 {
+        @apply text-4xl md:text-5xl;
+    }
+    h2 {
+        @apply text-3xl md:text-4xl;
+    }
+    h3 {
+        @apply text-2xl md:text-3xl;
+    }
+    p {
+        @apply leading-relaxed;
+    }
+    a {
+        @apply text-primary dark:text-dark-primary hover:underline;
+    }
+
+    /* Gaya dasar Flux UI (dari app.css lama) */
+    [data-flux-field]:not(ui-radio, ui-checkbox) {
+        @apply grid gap-2;
+    }
+
+    [data-flux-label] {
+        @apply !mb-0 !leading-tight;
+    }
+
+    /*
+     * PERBAIKAN: Override Flux UI focus-ring
+     * Diperbarui dari 'ring-accent' ke 'ring-primary-500' sesuai instruksi.
+     * Menggunakan offset putih untuk light mode dan dark-base-100 untuk dark mode.
+     */
+    input:focus[data-flux-control],
+    textarea:focus[data-flux-control],
+    select:focus[data-flux-control] {
+        @apply outline-hidden ring-2 ring-primary-500 ring-offset-2 ring-offset-base-100 dark:ring-offset-dark-base-100;
     }
 }
-
-[data-flux-field]:not(ui-radio, ui-checkbox) {
-    @apply grid gap-2;
-}
-
-[data-flux-label] {
-    @apply  !mb-0 !leading-tight;
-}
-
-input:focus[data-flux-control],
-textarea:focus[data-flux-control],
-select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
-}
-
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */
